@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'presentation/pages/home_page.dart';
+import 'data/repositories/meteorite_repository.dart';
+import 'presentation/blocs/meteorite_bloc.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final MeteoriteRepository meteoriteRepository = MeteoriteRepository();
+
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Cosmic Rocks',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
-      home: const Center(
-        child: Text('Test'),
+      home: BlocProvider(
+        create: (context) =>
+            MeteoriteBloc(meteoriteRepository: meteoriteRepository)
+              ..add(MeteoriteLoad()),
+        child: const HomePage(),
       ),
     );
   }
