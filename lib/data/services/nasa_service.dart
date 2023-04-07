@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class NasaService {
-  static const _baseUrl = 'BASE_URL';
+  static const _baseUrl = 'https://data.nasa.gov/resource/y77d-th95.json';
 
   Future<List<Map<String, dynamic>>> fetchMeteorites() async {
     final response = await http.get(Uri.parse(_baseUrl));

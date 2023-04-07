@@ -3,7 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class MeteoriteRepository {
-  final String _meteoriteApiUrl = 'BASE_URL';
+  final String _meteoriteApiUrl =
+      'https://data.nasa.gov/resource/y77d-th95.json';
 
   Future<List<Meteorite>> getMeteorites() async {
     try {
