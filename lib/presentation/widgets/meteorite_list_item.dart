@@ -1,49 +1,40 @@
+import 'package:cosmic_rocks/presentation/pages/meteorite_detail_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cosmic_rocks/data/models/meteorite.dart';
 
 class MeteoriteListItem extends StatelessWidget {
   final Meteorite meteorite;
-  final VoidCallback onTap;
 
-  const MeteoriteListItem({
-    Key? key,
-    required this.meteorite,
-    required this.onTap,
-  }) : super(key: key);
+  const MeteoriteListItem({Key? key, required this.meteorite})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Card(
+    return Card(
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) =>
+                  MeteoriteDetailPage(meteorite: meteorite),
+            ),
+          );
+        },
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: <Widget>[
               Text(
-                meteorite.name,
+                meteorite.name ?? 'N/A',
                 style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
-                ),
+                    fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8.0),
-              Text(
-                'Type: ${meteorite.type}',
-                style: const TextStyle(fontSize: 14.0),
-              ),
-              const SizedBox(height: 4.0),
-              Text(
-                'Year: ${meteorite.year}',
-                style: const TextStyle(fontSize: 14.0),
-              ),
-              const SizedBox(height: 4.0),
-              Text(
-                'Mass: ${meteorite.mass} g',
-                style: const TextStyle(fontSize: 14.0),
-              ),
+              Text('Class: ${meteorite.recclass ?? 'N/A'}'),
+              Text('Year: ${meteorite.year ?? 'N/A'}'),
+              Text('Fall: ${meteorite.fall ?? 'N/A'}'),
             ],
           ),
         ),

@@ -26,7 +26,6 @@ class HomePage extends StatelessWidget {
                 final meteorite = state.meteorites[index];
                 return MeteoriteListItem(
                   meteorite: meteorite,
-                  onTap: () {},
                 );
               },
             );
